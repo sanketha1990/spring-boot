@@ -59,12 +59,11 @@ public class DataLoadService {
 
 		String finalUrl = url + filter;
 		HttpEntity<String> entity = getHeader();
-		System.out.println("finalUrl = " + finalUrl + " access.token =" + accessToken);
+		LOGGER.info("Final request URL = " + finalUrl);
 		ResponseEntity<String> response = restTemplate.exchange(finalUrl, HttpMethod.GET, entity, String.class);
-		System.out.println("Response = " + response.getBody());
 		try {
 			dataLoad = mapper.readValue(response.getBody().toString(), DataLoadPojo[].class);
-			System.out.println("dataLoad = " + dataLoad);
+			LOGGER.info("dataLoad = " + dataLoad);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -131,7 +130,7 @@ public class DataLoadService {
 			list.add(pt);
 		}
 		
-		LOGGER.info("List size = "+list.size());
+		LOGGER.info("**********Number Of Generated Row is = "+list.size() +" ***********");
 		
 		for (ProcessTracker proctra : list) {
 			res = dataloadRepo.save(proctra);
