@@ -1,19 +1,26 @@
 # Quick Start 
+```
 This utility does not take any argument from command line.But while running this JAR make sure that updated property file and JAR should be in the same. JAR automatically consumes the property file and generated report based on that
 
+```
+
 ##Building
+```
 
 The main method of the application is at the following path:
 **com.load.tracker.dataloadreport.DataloadReportApplication.java**
 
-##Dependencies 
+```
 
+##Dependencies 
+```
 1.lombok
 2.mysql-connector-java or mssql-jdbc
 3.spring-boot-starter-actuator
 4.spring-boot-starter-data-jpa
 5.spring-boot-starter-web
 6.spring-boot-starter-data-rest
+```
 
 ##Parameters File Example
 
@@ -63,7 +70,6 @@ endpoints.shutdown.enabled=true
 
 Command to start the utility.
 ```
-#!plaintext
 
 java -jar dataload-report-${version}.jar > $logfilepath$
 
