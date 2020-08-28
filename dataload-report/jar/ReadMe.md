@@ -65,6 +65,6 @@ Command to start the utility.
 ```
 #!plaintext
 
-java -jar dataload-report-{$version}.jar > $logfilepath$
+java -jar dataload-report-${version}.jar > $logfilepath$
 
 ```
