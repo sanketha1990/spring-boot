@@ -22,10 +22,10 @@ The main method of the application is at the following path:
 
 ############ Application configuration #############
 # --------- You can make changes here -------------#           
-server.port=6666
-access.token=33250c81-a526-4df1-a130-9fed37f96c78
-environment.url=test.reltio.com
-tenant.id=eW6FFLP30ff8i9P
+server.port=8080
+access.token=
+environment.url=
+tenant.id=
 created.from=1598553000000
 created.to=1598639399999
 ####################################################
