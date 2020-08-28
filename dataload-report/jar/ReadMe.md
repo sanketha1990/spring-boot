@@ -1,6 +1,8 @@
 # Quick Start 
 ```
-This utility does not take any argument from command line.But while running this JAR make sure that updated property file and JAR should be in the same. JAR automatically consumes the property file and generated report based on that
+This utility does not take any argument from command line.
+But while running this JAR make sure that updated property file and JAR should be in the same PATH. 
+JAR automatically consumes the property file and generated report based on that
 
 ```
 
