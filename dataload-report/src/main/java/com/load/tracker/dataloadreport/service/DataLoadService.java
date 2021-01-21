@@ -94,22 +94,26 @@ public class DataLoadService {
 			Attributes attr = dataload[i].getAttributes();
 			pt.setDataloadType(attr.getDataloadType().get(0).getValue());
 			pt.setTypeOfData((attr.getTypeOfData()).get(0).getValue());
-			
-			String userComment=attr.getUserComment().get(0).getValue();
-			String[] comment=userComment.split(" ");
-			//System.out.println(comment[comment.length-1]);
-			
-			pt.setSourceSystem(comment[comment.length-1]);
-			
-			pt.setStartTime(attr.getStartTime().get(0).getValue().toString());
-			pt.setEndTime(attr.getEndTime().get(0).getValue().toString());
-			//String startDate=attr.getStartTime().get(0).getValue();
-			//Date sdate=Date.valueOf(startDate);
-			//pt.setStartTime(sdate);
-			
-			//String endDate=attr.getEndTime().get(0).getValue();
-			//Date edate=Date.valueOf(endDate);
-			//pt.setEndTime(edate);
+
+			String userComment = attr.getUserComment().get(0).getValue();
+			String[] comment = userComment.split(" ");
+			// System.out.println(comment[comment.length-1]);
+
+			pt.setSourceSystem(comment[comment.length - 1]);
+
+			if (attr.getStartTime() != null) {
+				pt.setStartTime(attr.getStartTime().get(0).getValue().toString());
+			}
+			if (attr.getEndTime() != null) {
+				pt.setEndTime(attr.getEndTime().get(0).getValue().toString());
+			}
+			// String startDate=attr.getStartTime().get(0).getValue();
+			// Date sdate=Date.valueOf(startDate);
+			// pt.setStartTime(sdate);
+
+			// String endDate=attr.getEndTime().get(0).getValue();
+			// Date edate=Date.valueOf(endDate);
+			// pt.setEndTime(edate);
 			pt.setStatus(attr.getStatus().get(0).getValue());
 
 			// Matrix attribute
@@ -120,22 +124,24 @@ public class DataLoadService {
 			pt.setSuccessRecordsCount(matrics[0].getValue().getSuccessRecordsCount().get(0).getValue());
 			pt.setFailedRecordsCount(matrics[0].getValue().getFailedRecordsCount().get(0).getValue());
 			pt.setTotalTimeTaken(matrics[0].getValue().getTotalTimeTaken().get(0).getValue());
-			pt.setTotalOPS(matrics[0].getValue().getTotalOPS().get(0).getValue());
-			
-			float timeTaken=Integer.parseInt((matrics[0].getValue().getTotalTimeTaken().get(0).getValue()));
-			float timeInMins=timeTaken/60;
-			
+			if (matrics[0].getValue().getTotalOPS() != null) {
+				pt.setTotalOPS(matrics[0].getValue().getTotalOPS().get(0).getValue());
+			}
+
+			float timeTaken = Integer.parseInt((matrics[0].getValue().getTotalTimeTaken().get(0).getValue()));
+			float timeInMins = timeTaken / 60;
+
 			pt.setTimeInMins(timeInMins);
 
 			list.add(pt);
 		}
-		
-		LOGGER.info("**********Number Of Generated Row is = "+list.size() +" ***********");
-		
+
+		LOGGER.info("**********Number Of Generated Row is = " + list.size() + " ***********");
+
 		for (ProcessTracker proctra : list) {
 			res = dataloadRepo.save(proctra);
 		}
-		LOGGER.info("Response ="+res);
+		LOGGER.info("Response =" + res);
 		return res;
 	}
 
